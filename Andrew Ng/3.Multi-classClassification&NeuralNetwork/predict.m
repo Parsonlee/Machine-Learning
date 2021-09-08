@@ -23,9 +23,9 @@ p = zeros(m, 1);
 prob = zeros(m, 1);
 
 a1 = [ones(m, 1), X]; % 给X添加一列值为1的列向量
-a2 = sigmoid(a1 * Theta1');
-a2 = [ones(m, 1), a2];
-a3 = sigmoid(a2 * Theta2');
+a2 = sigmoid(a1 * Theta1'); % 计算第二层(隐藏层)
+a2 = [ones(m, 1), a2];  % 添加一列值为1的列向量
+a3 = sigmoid(a2 * Theta2'); % 计算输出层
 
 [prob, p] = max(a3, [], 2);
 

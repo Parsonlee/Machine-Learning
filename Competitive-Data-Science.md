@@ -85,5 +85,13 @@
 
 - **MSE**, **RMSE**, **R-Squared**
   从优化角度上来说几乎一致
-  **MAE**
+- **MAE**
   更具有鲁棒性，对离群值不那么敏感
+- **(R)MSPE**, **MAPE** (percentage)
+  加了权重计算的 MSE 和 MAE
+- **(R)MSLE**
+  对数空间上的 MSE
+
+## 分类模型指标
+
+**Accuracy, Logloss, AUR(ROC), (Quadratic weighted)Kappa**

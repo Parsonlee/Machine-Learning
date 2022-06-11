@@ -95,3 +95,7 @@
 ## 分类模型指标
 
 **Accuracy, Logloss, AUR(ROC), (Quadratic weighted)Kappa**
+
+## 平均数编码
+
+Mean Encoding，正则化，衍生的情况以及优势和劣势。作用于指定的数据集或是特定情况，在此前提下，会产生显著效果

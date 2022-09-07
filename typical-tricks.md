@@ -35,7 +35,8 @@
   * 对于NLP来说，它不考虑不同样本间的大小关系，保留样本内不同特征之间的大小关系
 
 ## 关于正则化、归一化、标准化的区别和联系
-标准化：Standardization, 归一化：Normalization, 正则化：Regularization
+标准化：Standardization, 归一化：Normalization, 正则化：Regularization  
+(在pytorch或者DL中，Normalization是指标准化)
 * 标准化：减去均值，除以方差。${x_{new} = (x - \mu) / \sigma}$
 * 归一化：将数据压缩到一个区间内，比如[0, 1]、[-1, 1]等。常见方法有两种：
   * Min-Max Normalization: ${x_{new} = \frac{x - \min}{\max - \min}}$

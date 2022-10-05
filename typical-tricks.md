@@ -44,3 +44,10 @@
 * 正则化：对模型参数进行惩罚，使得模型参数不会过大，从而控制模型复杂度。
   * 加入L2范数正则项，称为岭回归 ridge regression
   * 加入L1范数正则项，称为Lasso regression
+
+## 多分类问题下，评价指标的不同计算方法
+* macro:宏平均（Macro-averaging）
+把每个类别都当成二分类，分别计算出各个类别 对应的precision，recall, f1 , 然后求所有类别的precision，recall,f1的平均值，得到最终的precision recall f1. 这里假设所有分类都是一样的重要，所以 整体结果受小类别（数量比较少的target）的影响比较大。
+
+* micro:微平均（Micro-averaging）
+把各个类别当成二分类，统计各自的混淆矩阵，然后统计加和 比例 得到一个最终的 混淆矩阵，再计算precision，recall，f1.

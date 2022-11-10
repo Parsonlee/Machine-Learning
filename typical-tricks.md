@@ -35,7 +35,7 @@
   * 对于NLP来说，它不考虑不同样本间的大小关系，保留样本内不同特征之间的大小关系
 
 ## 关于正则化、归一化、标准化的区别和联系
-标准化：Standardization, 归一化：Normalization, 正则化：Regularization  
+**标准化**：Standardization, **归一化**：Normalization, **正则化**：Regularization  
 (在pytorch或者DL中，Normalization是指标准化)
 * 标准化：减去均值，除以方差。${x_{new} = (x - \mu) / \sigma}$
 * 归一化：将数据压缩到一个区间内，比如[0, 1]、[-1, 1]等。常见方法有两种：
@@ -46,8 +46,13 @@
   * 加入L1范数正则项，称为Lasso regression
 
 ## 多分类问题下，评价指标的不同计算方法
-* macro:宏平均（Macro-averaging）
+* **macro**:宏平均（Macro-averaging）
 把每个类别都当成二分类，分别计算出各个类别 对应的precision，recall, f1 , 然后求所有类别的precision，recall,f1的平均值，得到最终的precision recall f1. 这里假设所有分类都是一样的重要，所以 整体结果受小类别（数量比较少的target）的影响比较大。
 
-* micro:微平均（Micro-averaging）
+* **micro**:微平均（Micro-averaging）
 把各个类别当成二分类，统计各自的混淆矩阵，然后统计加和 比例 得到一个最终的 混淆矩阵，再计算precision，recall，f1.
+
+## Softmax
+softmax具有保序性，即softmax值和模型的输出值对应的排序不会发生变化。
+在Pytorch中，`nn.CrossEntropyLoss()`会在内部先计算softmax再计算loss，因而不需要在构建模型时加入softmax层。  
+在推理时，直接使用argmax()操作即可得到对应的分类标号。

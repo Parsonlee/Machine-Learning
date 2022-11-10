@@ -11,6 +11,7 @@
   * 合理的权重初始值和激活函数的选取可以提高数值稳定性
 
 ## 微调（fine tuning）：
+    在下游任务的数据集上进行继续训练，区别于linear prob，fine-tune会更新整个模型参数，而linear prob只更新底层(最后线性层的参数)
   * 使用已经训练过了的模型，但要使用更强的正则化
   * 使用更小的学习率
   * 使用更少的数据迭代次数
@@ -37,13 +38,16 @@
 ## 关于正则化、归一化、标准化的区别和联系
 **标准化**：Standardization, **归一化**：Normalization, **正则化**：Regularization  
 (在pytorch或者DL中，Normalization是指标准化)
-* 标准化：减去均值，除以方差。${x_{new} = (x - \mu) / \sigma}$
+* 标准化：减去均值，除以方差。
+  $${x_{new} = (x - \mu) / \sigma}$$
 * 归一化：将数据压缩到一个区间内，比如[0, 1]、[-1, 1]等。常见方法有两种：
-  * Min-Max Normalization: ${x_{new} = \frac{x - \min}{\max - \min}}$
-  * Mean Normalization: ${x_{new} = \frac{x - x_{mean}}{\max - \min}}$
+  * Min-Max Normalization: 
+  $${x_{new} = \frac{x - \min}{\max - \min}}$$
+  * Mean Normalization: 
+  $${x_{new} = \frac{x - x_{mean}}{\max - \min}}$$
 * 正则化：对模型参数进行惩罚，使得模型参数不会过大，从而控制模型复杂度。
-  * 加入L2范数正则项，称为岭回归 ridge regression
-  * 加入L1范数正则项，称为Lasso regression
+  * 加入L2范数正则项，称为岭回归 *ridge regression*
+  * 加入L1范数正则项，称为 *Lasso regression*
 
 ## 多分类问题下，评价指标的不同计算方法
 * **macro**:宏平均（Macro-averaging）

@@ -91,3 +91,11 @@ kernel_size=2, stride=2, padding=0, dilation=1时，输出尺寸变为输入的�
 - RNN因为每个输出要依赖前一个输出当作输入，无法做到并行计算
 - `self-attention`可以做并行，输出结果是同时被计算出来的
 - 传统的词向量(word2vec)对于每个词预训练好后就不会改变，然而每个词在实际语境下会有不同的表达含义
+
+## 可视化一个batch的PyTorch张量类型的图片
+```python
+def visualize_batch_tensor(t1):
+    img = torchvision.utils.make_grid(t1.long()).cpu().numpy()
+    plt.imshow(np.transpose(img, (1,2,0)))
+    plt.show()
+```

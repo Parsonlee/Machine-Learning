@@ -34,7 +34,7 @@
 * `ndarray.ravel()`
 * `ndarray.flatten()`
 
-# Plot (matplotlib, seaborn)
+# Visualize (matplotlib, seaborn)
 
 ## 子图
 * 

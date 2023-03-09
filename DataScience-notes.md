@@ -24,7 +24,7 @@
 
 ## 分层索引
 * `index/columns .get_level_values(level=0)`获取level0上的索引。
-* `droplevel(level=0)`删除level0上的索引。
+* `droplevel(level=0)`删除level0上的索引。删除列索引使用`df.droplevel(level=0, axis=1)`。
   
 
 # Numpy

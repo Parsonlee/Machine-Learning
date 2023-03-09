@@ -21,6 +21,10 @@
   ```python
   df2 = df.assign(k=v)
   ```
+
+## 分层索引
+* `index/columns .get_level_values(level=0)`获取level0上的索引。
+* `droplevel(level=0)`删除level0上的索引。
   
 
 # Numpy

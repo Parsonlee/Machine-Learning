@@ -72,7 +72,7 @@ softmax具有保序性，即softmax值和模型的输出值对应的排序不会
 ## 1*1 卷积
 1*1卷积操作相当于一个线性层，通过减少输出通道数，达到降维的效果。其次是为了控制模型的复杂度。
 
-## 卷积计算后特征图维度
+## 卷积计算与池化计算后的特征图维度
 - `nn.Conv2d()`: 
 $$out = \frac{H/W - kernelsize + padding * 2}{stride}  + 1$$
 当kernel_size=3, stride=1, padding=1时，输入和输出尺寸相同。
@@ -80,6 +80,9 @@ $$out = \frac{H/W - kernelsize + padding * 2}{stride}  + 1$$
 - `nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)`:
 $$out = \frac{H/W + 2 * padding - dilation * (kernelsize - 1)-1}{stride}  + 1$$
 kernel_size=2, stride=2, padding=0, dilation=1时，输出尺寸变为输入的一半。如果步长为1，输出会比输入变小。
+    池化层的作用：
+    1. 实现invariance(不变性)，这种不变性包括translation(平移)，rotation(旋转)，scale(尺度)
+    2. （下采样）保留主要的特征同时减少参数(降维，效果类似PCA)和计算量，防止过拟合，提高模型泛化能力
 
 ## Pytorch矩阵乘法的函数
 - `torch.mm()`: 基本的**二维**矩阵乘法，但只适用二维。  

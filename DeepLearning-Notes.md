@@ -73,7 +73,7 @@ softmax具有保序性，即softmax值和模型的输出值对应的排序不会
 1*1卷积操作相当于一个线性层，通过减少输出通道数，达到降维的效果。其次是为了控制模型的复杂度。
 
 ## 卷积计算与池化计算后的特征图维度
-- `nn.Conv2d()`: 
+- `nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros', device=None)`: 
 $$out = \frac{H/W - kernelsize + padding * 2}{stride}  + 1$$
 当kernel_size=3, stride=1, padding=1时，输入和输出尺寸相同。
 

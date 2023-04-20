@@ -54,3 +54,14 @@
   fig, axes = plt.subplots(2, 3) # axes是二维数组，2行3列
   axes[0, 0].plot(...)
   ```
+
+# OpenCV
+
+## 常用的基础方法
+1. Convert to Grayscale (`cv2.cvtColor()`)
+2. Blur (`cv2.GaussianBlur()`)
+3. Edge Cascade (`cv2.Canny()`)
+4. Dilation (`cv2.dilate()`)
+5. Erosion  (`cv2.erode()`)
+6. Resize   (`cv2.resize()`)
+7. Crop    (`img[y:y+h, x:x+w]`)

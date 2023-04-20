@@ -57,7 +57,7 @@
 
 # 图像处理
 
-## 一张图像的基本数据格式为`uint8`，当使用`opencv`读取后，形状为(height, width, channel:BGR)
+## 一张图像的基本数据格式为`uint8`，当使用`opencv`的`cv2.imread()`方法读取后，形状为(height, width, channel:BGR)
 
 ## 常用的基础方法
 1. Convert to Grayscale (`cv2.cvtColor()`)

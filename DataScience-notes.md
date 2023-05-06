@@ -30,6 +30,36 @@
 -   `index/columns .get_level_values(level=0)`获取 level0 上的索引。
 -   `droplevel(level=0)`删除 level0 上的索引。删除列索引使用`df.droplevel(level=0, axis=1)`。
 
+## *tqdm实践*
+```python
+# tqdm的基础使用方式，1.手动导入普通版本或者notebook版本 2.导入自动版本
+from tqdm import tqdm, trange
+
+# manually import, with style in jupyter notebook
+from tqdm.notebook import tqdm
+
+# tqdm auto, choose the suitable one
+from tqdm.auto import tqdm
+```
+
+```python
+tqdm( iterable obj, desc='describe', total=length, disable=False )
+
+range(...) => trange(...)
+```
+
+```python
+# tqdm和pandas的结合使用
+df.progress_apply(func, axis)
+
+# 当使用while循环时，手动定制进度条
+pbar = tqdm(total=100)
+while exp:
+    pbar.update(1)
+    pass
+pbar.close()
+```
+
 # Numpy
 
 ## 随机模块 random

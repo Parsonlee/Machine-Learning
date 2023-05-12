@@ -1,20 +1,35 @@
 # Pandas
 
 ## 关于 DataFrame 的大小问题
-
 -   设置对应的 dtype，可以有效减少 DataFrame 的大小，但是当写入 csv 文件时，dtype 数据将会丢失。
 -   `df.to_pickle(df.pickle)`pickle 文件读写比 csv 更快，且文件更小，并且会保存所有的 dtype 信息。
 -   `df.to_feather(df.feather)`feather 文件读写比 csv 更快，文件更小。更适合于短期储存，而`parquet` (需要 install)更适合长期储存。
 -   size: csv > pickle > feather > parquet
 -   speed: csv > parquet > feather > pickle
 
-## concat, merge
+## 当从excel表导入时，多行合并值的处理方式
+由于excel表中有时会有单元格合并的情况，pandas读入后只会保留第一行的值。此时需要使用`fillna(method='ffill')`填充下面的Na值。
 
+## Dataframe的导出
+`df.to_dict('records')`使用关键词`records`，使得导出的格式为：
+```python
+[
+    {   # sample 0
+        col1: value,
+        col2: value
+    },
+    {   # sample 1
+        col1: value,
+        col2: value
+    },
+]
+```
+
+## concat, merge
 -   concat: `ignore_index`参数可以重新生成 index
 -   merge: `on='inner/outer'`默认为内连接，outer 为外连接
 
 ## 函数形式和非函数形式
-
 -   常见的非函数形式:
     ```python
     df2 = df.copy()
@@ -26,7 +41,6 @@
     ```
 
 ## 分层索引
-
 -   `index/columns .get_level_values(level=0)`获取 level0 上的索引。
 -   `droplevel(level=0)`删除 level0 上的索引。删除列索引使用`df.droplevel(level=0, axis=1)`。
 
@@ -63,20 +77,17 @@ pbar.close()
 # Numpy
 
 ## 随机模块 random
-
 -   `random.rand`: 均匀分布抽样
 -   `random.randint`: 参数为`(low, high, length)`
 -   `random.randn`: 均值为 0，方差为 1 的正态分布抽样
 
 ## 向量扁平化
-
 -   `ndarray.ravel()`
 -   `ndarray.flatten()`
 
 # Visualize (matplotlib, seaborn)
 
 ## 子图
-
 -   ```python
     fig = plt.figure(..figsize=(10, 10))
     ax1 = fig.add_subplot(2, 2, 1)  # 2行2列第1个子图
@@ -94,7 +105,6 @@ pbar.close()
 ## 一张图像的基本数据格式为`uint8`，当使用`opencv`的`cv2.imread()`方法读取后，形状为(height, width, channel:BGR)
 
 ## 常用的基础方法
-
 1. Convert to Grayscale (`cv2.cvtColor()`)
 2. Blur (`cv2.GaussianBlur()`)
 3. Edge Cascade (`cv2.Canny()`)
@@ -104,7 +114,6 @@ pbar.close()
 7. Crop (`img[y:y+h, x:x+w]`)
 
 ## 平移和旋转 `cv2.warpAffine(src, M, dsize)`
-
 -   平移
 
     ```python
@@ -131,7 +140,6 @@ pbar.close()
     ```
 
 ## 平滑和模糊
-
 1. 均值模糊：
    `cv2.blur(img, (5, 5))`
    均值模糊是一种最简单的平滑滤波方法，它的原理是将图像中每个像素周围的邻域取平均值，从而实现平滑效果。均值模糊对于去除轻微的噪声效果不错，但是对于比较严重的噪声效果并不好，会使图像失去细节。此外，由于均值模糊是基于像素的简单平均值，因此它对于图像中的边缘和纹理等细节部分的保护能力比较弱。
@@ -155,7 +163,6 @@ pbar.close()
 一般来说，如果需要**去除较弱**的噪声，可以选择均值模糊；如果需要**保留图像的细节**，可以选择高斯模糊；如果需要**去除比较严重**的噪声，可以选择中值模糊；如果需要**保留图像的边缘和细节**，可以选择双边模糊。
 
 ## Bitwise Operations
-
 - `cv2.bitwise_and(img1, img2)`: 两个图像的交集
 - `cv2.bitwise_or(img1, img2)`: 两个图像的并集
 - `cv2.bitwise_xor(img1, img2)`: 两个图像的异或，即非相交的区域

@@ -50,7 +50,8 @@ range(...) => trange(...)
 
 ```python
 # tqdm和pandas的结合使用
-df.progress_apply(func, axis)
+tqdm.pandas()  # 启动tqdm对pandas的监测
+df.progress_apply(func, axis)  # 使用带进度条功能的apply方法
 
 # 当使用while循环时，手动定制进度条
 pbar = tqdm(total=100)

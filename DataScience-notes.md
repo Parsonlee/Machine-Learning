@@ -1,5 +1,20 @@
 # Pandas
 
+## 对空DataFrame添加数据
+由于高版本`Pandas`删除了`append`方法，当解构复杂数据完添加到`DataFrame`中时，使用`loc`方法。
+```python
+# 创建一个空的 DataFrame
+df = pd.DataFrame(columns=['A', 'B'])
+
+# 使用 df.iloc 添加数据
+# 这里会出现 IndexError，因为 df.iloc 不会自动扩展目标对象的大小
+df.iloc[0] = [1, 2]
+
+# 使用 df.loc 添加数据
+# 这里不会出现错误，df.loc 会自动扩展目标对象的大小
+df.loc[0] = [1, 2]
+```
+
 ## 对所有float元素取4位小数
 ```df.round(4)```
 

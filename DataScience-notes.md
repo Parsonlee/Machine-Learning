@@ -1,5 +1,26 @@
 # Pandas
 
+<<<<<<< HEAD
+=======
+## 对空DataFrame添加数据
+由于高版本`Pandas`删除了`append`方法，当解构复杂数据完添加到`DataFrame`中时，使用`loc`方法。
+```python
+# 创建一个空的 DataFrame
+df = pd.DataFrame(columns=['A', 'B'])
+
+# 使用 df.iloc 添加数据
+# 这里会出现 IndexError，因为 df.iloc 不会自动扩展目标对象的大小
+df.iloc[0] = [1, 2]
+
+# 使用 df.loc 添加数据
+# 这里不会出现错误，df.loc 会自动扩展目标对象的大小
+df.loc[0] = [1, 2]
+```
+
+## 对所有float元素取4位小数
+```df.round(4)```
+
+>>>>>>> 7ef0f82fca18043f4cb756127d54264b4afd5256
 ## 关于 DataFrame 的大小问题
 -   设置对应的 dtype，可以有效减少 DataFrame 的大小，但是当写入 csv 文件时，dtype 数据将会丢失。
 -   `df.to_pickle(df.pickle)`pickle 文件读写比 csv 更快，且文件更小，并且会保存所有的 dtype 信息。
@@ -7,6 +28,7 @@
 -   size: csv > pickle > feather > parquet
 -   speed: csv > parquet > feather > pickle
 
+<<<<<<< HEAD
 ## 当从excel表导入时，多行合并值的处理方式
 由于excel表中有时会有单元格合并的情况，pandas读入后只会保留第一行的值。此时需要使用`fillna(method='ffill')`填充下面的Na值。
 
@@ -25,6 +47,8 @@
 ]
 ```
 
+=======
+>>>>>>> 7ef0f82fca18043f4cb756127d54264b4afd5256
 ## concat, merge
 -   concat: `ignore_index`参数可以重新生成 index
 -   merge: `on='inner/outer'`默认为内连接，outer 为外连接
@@ -44,7 +68,7 @@
 -   `index/columns .get_level_values(level=0)`获取 level0 上的索引。
 -   `droplevel(level=0)`删除 level0 上的索引。删除列索引使用`df.droplevel(level=0, axis=1)`。
 
-## *tqdm实践*
+## tqdm实践
 ```python
 # tqdm的基础使用方式，1.手动导入普通版本或者notebook版本 2.导入自动版本
 from tqdm import tqdm, trange
@@ -64,7 +88,8 @@ range(...) => trange(...)
 
 ```python
 # tqdm和pandas的结合使用
-df.progress_apply(func, axis)
+tqdm.pandas()  # 启动tqdm对pandas的监测
+df.progress_apply(func, axis)  # 使用带进度条功能的apply方法
 
 # 当使用while循环时，手动定制进度条
 pbar = tqdm(total=100)

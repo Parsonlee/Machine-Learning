@@ -73,6 +73,8 @@ df.progress_apply(func, axis)  # 使用带进度条功能的apply方法
 # 当使用while循环时，手动定制进度条
 pbar = tqdm(total=100)
 while exp:
+    # 显示数据在进度条头部
+    pbar.set_description('Processing %s' % data)
     pbar.update(1)
     pass
 pbar.close()

@@ -98,9 +98,10 @@ pbar.close()
     -   `ndarray.ravel()`
     -   `ndarray.flatten()`
 
-# Visualize (matplotlib, seaborn)
+# Visualize (matplotlib, seaborn, matplotx)
 
 -   ## 子图
+
     -   ```python
         fig = plt.figure(..figsize=(10, 10))
         ax1 = fig.add_subplot(2, 2, 1)  # 2行2列第1个子图
@@ -112,6 +113,54 @@ pbar.close()
         fig, axes = plt.subplots(2, 3) # axes是二维数组，2行3列
         axes[0, 0].plot(...)
         ```
+
+-   ## 美化插件 [matplotx](https://github.com/nschloe/matplotx)
+
+    常用图表：
+
+    -   Line chart
+        ![示例图](https://camo.githubusercontent.com/0c4926e2cd05649898badbeb36a4ae3a3db3bc424d119460ae4c596abaa97287/68747470733a2f2f6e7363686c6f652e6769746875622e696f2f6d6174706c6f74782f6578312d64756674652e737667)
+
+    ```python
+    import matplotlib.pyplot as plt
+    import matplotx
+    import numpy as np
+
+    # create data
+    rng = np.random.default_rng(0)
+    offsets = [1.0, 1.50, 1.60]
+    labels = ["no balancing", "CRV-27", "CRV-27*"]
+    x0 = np.linspace(0.0, 3.0, 100)
+    y = [offset * x0 / (x0 + 1) + 0.1 * rng.random(len(x0)) for offset in offsets]
+
+    # plot
+    with plt.style.context(matplotx.styles.dufte):
+        for yy, label in zip(y, labels):
+            plt.plot(x0, yy, label=label)
+        plt.xlabel("distance [m]")
+        matplotx.ylabel_top("voltage [V]")  # move ylabel to the top, rotate
+        matplotx.line_labels()  # line labels to the right
+        plt.show()
+    ```
+
+    -   Bar chart
+        ![示例图](https://camo.githubusercontent.com/d47f916f07fcca3b9b5b4990cb208cd744f382c8d0012afe7e76a1c300046cc1/68747470733a2f2f6e7363686c6f652e6769746875622e696f2f6d6174706c6f74782f626172732d6475667465322e737667)
+
+    ```python
+    import matplotlib.pyplot as plt
+    import matplotx
+
+    labels = ["Australia", "Brazil", "China", "Germany", "Mexico", "United\nStates"]
+    vals = [21.65, 24.5, 6.95, 8.40, 21.00, 8.55]
+    xpos = range(len(vals))
+
+    with plt.style.context(matplotx.styles.dufte_bar):
+        plt.bar(xpos, vals)
+        plt.xticks(xpos, labels)
+        matplotx.show_bar_values("{:.2f}")
+        plt.title("average temperature [°C]")
+        plt.show()
+    ```
 
 # 图像处理
 

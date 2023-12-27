@@ -95,8 +95,45 @@ pbar.close()
     -   `random.randn`: 均值为 0，方差为 1 的正态分布抽样
 
 -   ## 向量扁平化
+
     -   `ndarray.ravel()`
     -   `ndarray.flatten()`
+
+-   ## 用于计算向量距离的指标
+
+    -   Euclidean Distance(L2)
+
+    ```python
+    # Euclidean Distance
+    L2 = [(vec1[i] - vec2[i])**2 for i in range(len(vec1))]
+    L2 = np.sqrt(np.array(L2).sum())
+
+    np.linalg.norm((vec1 - vec2), ord=2)
+    ```
+
+    -   Manhattan Distance(L1)
+
+    ```python
+    # Manhattan Distance
+    L1 = [(vec1[i] - vec2[i]) for i in range(len(vec1))]
+    L1 = np.abs(L1).sum()
+
+    np.linalg.norm((vec1 - vec2), ord=1)
+    ```
+
+    -   Dot Product
+
+    ```python
+    # Dot Product
+    np.dot(vec1, vec2)
+    ```
+
+    -   Cosine Distance
+
+    ```python
+    # Cosine Distance
+    cosine = 1 - (np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2)))
+    ```
 
 # Visualize (matplotlib, seaborn, matplotx)
 
